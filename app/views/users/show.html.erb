@@ -1,0 +1,5 @@
+<div class="row">
+    <div class="col-md-11 text-right"><%= link_to "Logout", session_path(current_user), method: :delete %></div>
+</div>
+
+<h3>Welcome, <%= @user.first_name %></h3>

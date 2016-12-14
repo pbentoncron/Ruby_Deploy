@@ -1,11 +1,9 @@
 Rails.application.routes.draw do
-  
-  root 'products#index'
 
-  resources :products
-  resources :category
+  root 'users#index'
 
-  post 'comments' => 'products#add_comment'
+  resources :users, except: [:destroy]
+  resources :sessions, only: [:create, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

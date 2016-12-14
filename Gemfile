@@ -40,5 +40,4 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'hirb'
 gem 'faker'
-gem 'rails-footnotes', '~> 4.0'
 gem 'bootstrap-sass'

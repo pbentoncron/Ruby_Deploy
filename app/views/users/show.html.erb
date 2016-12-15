@@ -85,7 +85,7 @@
         <% @purchased.each do |purch| %>
             <% if purch.user_id == current_user.id %>
         <tr>
-          <td><%= purch.user.first_name %></td>
+          <td><%= purch.name %></td>
           <td><%= purch.updated_at.strftime("%B %d, %Y") %></td>
           <td></td>
           <td><%= number_to_currency(purch.amount) %></td>

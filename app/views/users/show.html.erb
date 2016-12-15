@@ -39,8 +39,8 @@
         <% @not_purchased.each do |prod| %>
         <tr>
           <td><%= prod.name %></td>
-          <td><%= prod.created_at %></td>
-          <td><%= prod.amount %></td>
+          <td><%= prod.created_at.strftime("%B %d, %Y") %></td>
+          <td><%= number_to_currency(prod.amount) %></td>
           <td><%= link_to "Remove", product_path(prod.id), method: :delete %></td>
         </tr>
         <% end %>
@@ -62,9 +62,9 @@
             <% if s.user_id == current_user.id %>
         <tr>
           <td><%= s.name %></td>
-          <td><%= s.updated_at %></td>
+          <td><%= s.updated_at.strftime("%B %d, %Y") %></td>
           <td></td>
-          <td><%= s.amount %></td>
+          <td><%= number_to_currency(s.amount) %></td>
         </tr>
       </tbody>
     </table>
@@ -85,10 +85,10 @@
         <% @purchased.each do |purch| %>
             <% if purch.user_id == current_user.id %>
         <tr>
-          <td><%= purch.name %></td>
-          <td><%= purch.updated_at %></td>
+          <td><%= purch.user.first_name %></td>
+          <td><%= purch.updated_at.strftime("%B %d, %Y") %></td>
           <td></td>
-          <td><%= purch.amount %></td>
+          <td><%= number_to_currency(purch.amount) %></td>
         </tr>
             <% end %>
         <% end %>

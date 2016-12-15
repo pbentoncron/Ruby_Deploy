@@ -8,4 +8,5 @@ class Product < ActiveRecord::Base
   def init
     self.purchased = false if self.purchased.nil?
   end
+
 end

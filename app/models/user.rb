@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   has_secure_password
 
   has_many :products
+  has_many :buyers
+  has_many :purchases, through: :buyers, source: :product, foreign_key: "product_id"
 
   # validations
 

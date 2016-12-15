@@ -1,29 +1,29 @@
 class ProductsController < ApplicationController
 
     def index
-        @user = User.find(params[:id])
+        @products = Product.all
+        @user = current_user
     end
 
     def create
         product = current_user.products.new(product_params)
         if product.save
-            redirect_to product_path(current_user)
+            redirect_to products_path
         else
             flash[:errors] = product.errors.full_messages
             redirect_to user_path(current_user)
         end
     end
 
-    def show
-        @products = Product.all
-        @user = User.find(params[:id])
-        @purchased = Product.where(purchased: false, user: current_user)
-    end
-
     def update
         product = Product.find(params[:id])
-        product.update(purchased: true)
-        redirect_to user_path
+        if product.update(purchased: true)
+            Buyer.create(user: current_user, product:product)
+            redirect_to user_path
+        else
+            flash["Transaction was unsuccesfully"]
+            redirect_to user_path
+        end
     end
 
     def destroy

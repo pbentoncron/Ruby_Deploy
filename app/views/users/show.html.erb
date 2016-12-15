@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-11 text-right"><%= link_to "Go to All Products", product_path(current_user) %> | <%= link_to "Logout", session_path(current_user), method: :delete %></div>
+    <div class="col-md-11 text-right"><%= link_to "Go to All Products", products_path %> | <%= link_to "Logout", session_path(current_user), method: :delete %></div>
 </div>
 
 
@@ -16,7 +16,7 @@
         <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
         <div class="form-group">
           <label for="InputFirst_name">Amount</label>
-          <input type="number" class="form-control" name="product[amount]" />
+          <input type="text" class="form-control" name="product[amount]" />
         </div>
         <div>
             <input class="btn btn-primary btn-sm" type="submit" value="Sell">
@@ -36,13 +36,15 @@
         </tr>
       </thead>
       <tbody>
-        <% @not_purchased.each do |prod| %>
+        <% @user.products.each do |product| %>
+          <% if product.purchased == false %>
         <tr>
-          <td><%= prod.name %></td>
-          <td><%= prod.created_at.strftime("%B %d, %Y") %></td>
-          <td><%= number_to_currency(prod.amount) %></td>
-          <td><%= link_to "Remove", product_path(prod.id), method: :delete %></td>
+          <td><%= product.name %></td>
+          <td><%= product.created_at.strftime("%B %d, %Y") %></td>
+          <td><%= number_to_currency(product.amount) %></td>
+          <td><%= link_to "Remove", product_path(product.id), method: :delete %></td>
         </tr>
+          <% end %>
         <% end %>
       </tbody>
     </table>
@@ -58,16 +60,22 @@
         </tr>
       </thead>
       <tbody>
-        <% @sold.each do |s| %>
+        <% @user.products.each do |product| %>
+          <% if product.purchased == true %>
+            <% product.purchasers.each do |sale| %>
         <tr>
-          <td><%= s.name %></td>
-          <td><%= s.updated_at.strftime("%B %d, %Y") %></td>
-          <td>...</td>
-          <td><%= number_to_currency(s.amount) %></td>
+          <td><%= product.name %></td>
+          <td><%= sale.updated_at.strftime("%B %d, %Y") %></td>
+          <td><%= sale.first_name %></td>
+          <td><%= number_to_currency(product.amount) %></td>
         </tr>
+            <% end %>
+          <% end %>
         <% end %>
       </tbody>
     </table>
+
+    <h4 class="text-right">Total: <%= @total_sales %></h4>
 
     <h3>Purchases</h3>
     <table class="table table-bordered">
@@ -80,14 +88,17 @@
         </tr>
       </thead>
       <tbody>
-        <% @purchased.each do |purch| %>
+        <% @user.purchases.each do |purchase| %>
         <tr>
-          <td><%= purch.name %></td>
-          <td><%= purch.updated_at.strftime("%B %d, %Y") %></td>
-          <td>...</td>
-          <td><%= number_to_currency(purch.amount) %></td>
+          <td><%= purchase.name %></td>
+          <td><%= purchase.updated_at.strftime("%B %d, %Y") %></td>
+          <td><%= purchase.user.first_name %></td>
+          <td><%= number_to_currency(purchase.amount) %></td>
         </tr>
         <% end %>
       </tbody>
     </table>
+
+    <h4 class="text-right">Total: <%= @purchases %></h4>
+
 </div>

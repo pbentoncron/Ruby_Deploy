@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   def show
     @products = Product.all
     @not_purchased = Product.where(purchased: false, user: current_user)
-    @purchased = Product.where(purchased: true, user: current_user)
+    @purchased = Product.where(purchased: true)
     @sold = Product.where(purchased: true)
     @user = current_user
   end

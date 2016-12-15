@@ -59,13 +59,13 @@
       </thead>
       <tbody>
         <% @sold.each do |s| %>
-            <% if s.user_id == current_user.id %>
         <tr>
           <td><%= s.name %></td>
           <td><%= s.updated_at.strftime("%B %d, %Y") %></td>
           <td></td>
           <td><%= number_to_currency(s.amount) %></td>
         </tr>
+        <% end %>
       </tbody>
     </table>
 
@@ -78,8 +78,6 @@
           <th>Seller</th>
           <th>Amount</th>
         </tr>
-            <% end %>
-        <% end %>
       </thead>
       <tbody>
         <% @purchased.each do |purch| %>

@@ -36,7 +36,7 @@
         </tr>
       </thead>
       <tbody>
-        <% @purchased.each do |prod| %>
+        <% @not_purchased.each do |prod| %>
         <tr>
           <td><%= prod.name %></td>
           <td><%= prod.created_at %></td>
@@ -59,13 +59,13 @@
       </thead>
       <tbody>
         <% @sold.each do |s| %>
+            <% if s.user_id == current_user.id %>
         <tr>
           <td><%= s.name %></td>
           <td><%= s.updated_at %></td>
           <td></td>
           <td><%= s.amount %></td>
         </tr>
-        <% end %>
       </tbody>
     </table>
 
@@ -78,15 +78,20 @@
           <th>Seller</th>
           <th>Amount</th>
         </tr>
+            <% end %>
+        <% end %>
       </thead>
       <tbody>
-
+        <% @purchased.each do |purch| %>
+            <% if purch.user_id == current_user.id %>
         <tr>
+          <td><%= purch.name %></td>
+          <td><%= purch.updated_at %></td>
           <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td><%= purch.amount %></td>
         </tr>
+            <% end %>
+        <% end %>
       </tbody>
     </table>
 </div>

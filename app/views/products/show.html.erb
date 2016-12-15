@@ -19,6 +19,7 @@
       </thead>
       <tbody>
         <% @products.each do |product| %>
+          <% if @purchased %>
         <tr>
           <td><%= product.name %></td>
           <td><%= product.user.first_name %></td>
@@ -33,6 +34,7 @@
             </form>
           </td>
         </tr>
+          <% end %>
         <% end %>
       </tbody>
     </table>

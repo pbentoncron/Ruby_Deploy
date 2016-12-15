@@ -75,7 +75,7 @@
       </tbody>
     </table>
 
-    <h4 class="text-right">Total: <%= @total_sales %></h4>
+    <h4 class="text-right">Total: <%= number_to_currency(@total_sales) %></h4>
 
     <h3>Purchases</h3>
     <table class="table table-bordered">
@@ -99,6 +99,6 @@
       </tbody>
     </table>
 
-    <h4 class="text-right">Total: <%= @purchases %></h4>
+    <h4 class="text-right">Total: <%= number_to_currency(@purchases) %></h4>
 
 </div>

@@ -19,7 +19,7 @@
       </thead>
       <tbody>
         <% @products.each do |product| %>
-          <% if @purchased %>
+          <% if product.purchased == false %>
         <tr>
           <td><%= product.name %></td>
           <td><%= product.user.first_name %></td>

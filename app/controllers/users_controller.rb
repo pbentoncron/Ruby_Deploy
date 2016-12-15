@@ -17,7 +17,10 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @products = Product.all
+    @purchased = Product.where(purchased: false, user: current_user)
+    @sold = Product.where(purchased: true)
+    @user = current_user
   end
 
   private

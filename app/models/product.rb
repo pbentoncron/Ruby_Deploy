@@ -4,7 +4,7 @@ class Product < ActiveRecord::Base
   has_many :purchasers, through: :buyers, source: :user, foreign_key: "user_id"
 
   validates_presence_of :name, :amount
-
+  validates_numericality_of :amount, greater_than: (0)
   after_initialize :init
 
   def init

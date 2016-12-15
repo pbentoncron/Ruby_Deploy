@@ -26,12 +26,14 @@
           <td><%= product.created_at.strftime("%B %d, %Y") %></td>
           <td><%= number_to_currency(product.amount) %></td>
           <td>
+            <% if product.user_id != current_user.id %>
             <form action="/products/<%= product.id %>" method="POST">
               <input type="hidden" name="_method" value="PUT">
               <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
               <input type="hidden" name="product[purchased]" value="<%= product.id %>">
               <button class="btn btn-primary btn-sm" type="submit">Buy</button>
             </form>
+            <% end %>
           </td>
         </tr>
           <% end %>

@@ -1,0 +1,25 @@
+<div class = "row">
+    <div class = "col-md-11 text-right"> <%= link_to "Bright Ideas", ideas_path %> | <%= link_to "Log Out", session_path(current_user), method: :delete %></div>
+</div>
+
+<h1><%= @ideas.content %></h1>
+
+<div class="col-md-8">
+    <h3>People who liked this post:</h3>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Alias</th>
+          <th>Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @ideas.users_liked.each do |user| %>
+        <tr>
+          <td><%= user.alias %></td>
+          <td><%= user.name %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+</div>

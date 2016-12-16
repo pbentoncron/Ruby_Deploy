@@ -1,0 +1,38 @@
+<div class = "row">
+    <div class = "col-md-11 text-right"> <%= link_to "Log Out", session_path(current_user), method: :delete %></div>
+</div>
+
+<h1>Hi, <%= @user.alias%></h1>
+
+<div class="col-md-6">
+    <form action="/ideas" method="POST">
+        <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+        <div class="form-group">
+          <label for="InputIdea">Post something witty here...</label>
+          <input type="text" class="form-control" name="idea[content]">
+        </div>
+        <div>
+            <input class="btn btn-primary" type="submit" value="Idea!">
+        </div>
+    </form>
+</div>
+
+<div class="row">
+    <% @ideas.sort { |a,b| b.users_liked(User).count <=> a.users_liked(User).count }.each do |idea| %>
+      <p><a href="/users/<%= idea.user.id %>"><%= idea.user.alias %> </a>says: <%= idea.content %></p>
+      <% if current_user == idea.user %>
+        <form action="/ideas/<%= idea.id %>" method='post'>
+          <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+          <input type='hidden' name='_method' value='delete'>
+          <input type='submit' value='Delete'>
+        </form>
+      <% else %>
+        <form action='/likes' method='post'>
+          <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+          <input type='hidden' name='idea_id' value='<%= idea.id %>'>
+          <input type='submit' value='Like'>
+        </form>
+        <p><a href="ideas/<%= idea.id %>"><%= idea.likes.count %> People</a> likes this</p>
+      <% end %>
+    <% end %>
+</div>

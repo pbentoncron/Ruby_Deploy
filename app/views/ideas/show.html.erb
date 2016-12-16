@@ -14,11 +14,13 @@
         </tr>
       </thead>
       <tbody>
-        <% @ideas.users_liked.limit(1).each do |user| %>
+        <% @ideas.users_liked.uniq.each do |user| %>
         <tr>
-          <td><%= user.alias %></td>
+          <% if @ideas.users_liked.count > 0 %>
+          <td><a href="/users/<%= current_user.id %>"><%= user.alias %> </a></td>
           <td><%= user.name %></td>
         </tr>
+          <% end %>
         <% end %>
       </tbody>
     </table>

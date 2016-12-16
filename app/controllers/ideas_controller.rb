@@ -22,6 +22,7 @@ class IdeasController < ApplicationController
     end
 
     def show
+        @user = User.all
         @ideas = Idea.find(params[:id])
     end
 

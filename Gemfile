@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.8'
 # Use postgresql as the database for Active Record
+gem 'postgresql'
 gem 'pg'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
@@ -40,6 +41,6 @@ gem 'spring',        group: :development
 
 gem 'hirb'
 gem 'faker'
-gem 'rails-footnotes', '~> 4.0'
+# gem 'rails-footnotes', '~> 4.0'
 gem 'bootstrap-sass'
 

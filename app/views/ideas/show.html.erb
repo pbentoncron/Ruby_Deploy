@@ -14,7 +14,7 @@
         </tr>
       </thead>
       <tbody>
-        <% @ideas.users_liked.each do |user| %>
+        <% @ideas.users_liked.limit(1).each do |user| %>
         <tr>
           <td><%= user.alias %></td>
           <td><%= user.name %></td>

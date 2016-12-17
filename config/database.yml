@@ -17,14 +17,14 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  username: ubuntu
+  #username: ubuntu
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: 5
 
 development:
   <<: *default
-  database: products_dashboard_II_development
+  database: beltexam_development
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -58,7 +58,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: products_dashboard_II_test
+  database: beltexam_test
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -81,5 +81,5 @@ test:
 #
 production:
   <<: *default
-  database: products_dashboard_II_production
+  database: beltexam_production
 

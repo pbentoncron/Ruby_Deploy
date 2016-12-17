@@ -64,6 +64,8 @@ GEM
     minitest (5.10.1)
     multi_json (1.12.1)
     pg (0.19.0)
+    postgresql (1.0.0)
+      pg
     rack (1.5.5)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -127,7 +129,7 @@ DEPENDENCIES
   hirb
   jbuilder (~> 2.0)
   jquery-rails
-  pg
+  postgresql
   rails (= 4.1.8)
   rails-footnotes (~> 4.0)
   sass-rails (~> 4.0.3)
